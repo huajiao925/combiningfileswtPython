@@ -1,0 +1,17 @@
+ 
+import pandas as pd
+import glob
+import re
+
+path = '/users/folder/subfolder/txt_files' #the folder included all the txt files
+combined = '/users/folder/subfolder/txt_files/combined.csv'#the final file name
+pattern = re.compile('\d{6}X{6}\d{4}') #the row which starts with a pattern
+file_names = [f for f in glob.glob(path + "**/*.txt", recursive=True)]
+
+with open(combined, 'w') as outfile:
+    for fname in file_names:
+        with open(fname) as infile:
+            for line in infile:
+                if pattern.match(line):
+                    outfile.write(line)
+
