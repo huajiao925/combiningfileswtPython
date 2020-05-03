@@ -1,0 +1,13 @@
+import pandas as pd
+import numpy as np
+import glob
+#replace the path to the folder where all the raw files are placed.
+#the raw files format now are .xlsx
+glob.glob("/Users/yourname/folder/subfolder/*.xlsx")
+all_data = pd.DataFrame()
+#replace the path to the folder where all the raw files are placed.
+for f in glob.glob("/Users/yourname/folder/subfolder/*.xlsx"):
+    df = pd.read_excel(f)
+    all_data = all_data.append(df,ignore_index=True)
+#replace the path to the folder where you want to put the newly generated file
+all_data.to_excel(r'/Users/yourname/folder/subfolder/combined.xlsx')
